@@ -17,7 +17,11 @@ package com.example.android.sunshine.sync;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.support.annotation.NonNull;
+
+import com.example.android.sunshine.data.WeatherContract;
 
 
 public class SunshineSyncUtils {
@@ -29,8 +33,37 @@ public class SunshineSyncUtils {
     //  TODO (4) If the method body is executed, set sInitialized to true
     //  TODO (5) Check to see if our weather ContentProvider is empty
         //  TODO (6) If it is empty or we have a null Cursor, sync the weather now!
-    synchronized  public static void initilize(){
+    synchronized  public static void initilize(final Context context){
+        if (sInitialized) return;
+        sInitialized = true;
+        Thread checkForEmpty = new Thread(new Runnable() {
+            @Override
+            public void run() {
 
+                /* URI for every row of weather data in our weather table*/
+                Uri forecastQueryUri = WeatherContract.WeatherEntry.CONTENT_URI;
+
+                String[] projectionColumns = {WeatherContract.WeatherEntry._ID};
+                String selectionStatement = WeatherContract.WeatherEntry
+                        .getSqlSelectForTodayOnwards();
+
+                Cursor cursor = context.getContentResolver().query(
+                        forecastQueryUri,
+                        projectionColumns,
+                        selectionStatement,
+                        null,
+                        null);
+
+                if (null == cursor || cursor.getCount() == 0) {
+                    startImmediateSync(context);
+                }
+
+                /* Make sure to close the Cursor to avoid memory leaks! */
+                cursor.close();
+            }
+        });
+
+        checkForEmpty.start();
     }
 
     /**
