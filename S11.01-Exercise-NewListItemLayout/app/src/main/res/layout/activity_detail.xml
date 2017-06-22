@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
      Copyright (C) 2016 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,21 +24,29 @@
   -                                                                                              -
   - Note that this is the PORTRAIT version of the layout.                                        -
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="8dp">
 
+    <ImageView
+        android:id="@+id/weather_icon"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        tools:src="@drawable/art_clouds" />
 
     <TextView
         android:id="@+id/date"
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Saturday, September 24"/>
+        tools:text="Saturday, September 24" />
 
     <!-- Text that describes weather condition -->
     <TextView
@@ -47,7 +54,7 @@
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Rainy"/>
+        tools:text="Rainy" />
 
     <!-- High temperature for today -->
     <TextView
@@ -55,7 +62,7 @@
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="19\u00b0"/>
+        tools:text="19\u00b0" />
 
     <!-- Low temperature for today -->
     <TextView
@@ -63,7 +70,7 @@
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="10\u00b0"/>
+        tools:text="10\u00b0" />
 
     <!-- Humidity  -->
     <TextView
@@ -71,7 +78,7 @@
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="38%"/>
+        tools:text="38%" />
 
     <!-- Pressure  -->
     <TextView
@@ -79,7 +86,7 @@
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="995 hPa"/>
+        tools:text="995 hPa" />
 
     <!-- Wind  -->
     <TextView
@@ -87,6 +94,6 @@
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="4km/h NW"/>
+        tools:text="4km/h NW" />
 
 </LinearLayout>
